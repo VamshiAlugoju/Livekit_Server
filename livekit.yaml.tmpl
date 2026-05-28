@@ -1,0 +1,25 @@
+# SOURCE config. up.sh renders this -> livekit.yaml, substituting __REDIS_ADDR__
+# with REDIS_ADDR from .env. Edit THIS file, not livekit.yaml.
+port: 7880
+
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 50100
+
+keys:
+  devkey: secret
+
+# server POSTs room/participant lifecycle events here, signed with api_key.
+# api_key MUST match a key in the `keys:` block above.
+# With host networking, backend on the SAME server = http://localhost:8081/...
+# Set this to wherever the backend actually runs.
+webhook:
+  api_key: devkey
+  urls:
+    - http://10.10.10.122:8081/v1/calls/webhook
+
+# external redis (from .env REDIS_ADDR). With network_mode: host, redis on the
+# same server is reachable at localhost:6379.
+redis:
+  address: __REDIS_ADDR__

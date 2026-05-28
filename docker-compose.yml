@@ -1,0 +1,24 @@
+# Spin up LiveKit. Uses an EXTERNAL redis (address from .env), no redis service.
+# Start via the wrapper so redis is checked first:
+#   ./up.sh                            # precheck redis -> render config -> up
+#   docker compose logs -f livekit     # watch (incl. webhook send errors)
+#   docker compose down                # stop
+#
+# Webhook target lives in livekit.yaml -> webhook.urls. Server reads config at
+# boot, so `docker compose restart livekit` after editing the template.
+services:
+  livekit:
+    # PIN a version (not :latest). Find current stable:
+    #   docker run --rm livekit/livekit-server:latest --version
+    image: ${LIVEKIT_IMAGE:-livekit/livekit-server:v1.12}
+    container_name: livekit
+    command: --config /etc/livekit.yaml --dev
+    restart: unless-stopped
+    # host networking (Linux only): server binds 7880/7881 + UDP range directly
+    # on the host. Best for WebRTC (no NAT remap). No `ports:` mapping needed,
+    # and `localhost` inside the container == the host (so redis/backend on the
+    # same box are reachable at localhost).
+    network_mode: host
+    volumes:
+      # up.sh renders livekit.yaml from livekit.yaml.tmpl using .env REDIS_ADDR
+      - ./livekit.yaml:/etc/livekit.yaml:ro

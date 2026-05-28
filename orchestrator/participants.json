@@ -1,0 +1,52 @@
+[
+  {
+    "userId": "6964d3757894ba2eda2ba9eb",
+    "name": "Gnana Kumar",
+    "username": "Kumar",
+    "image": "https://chatbucketcdn.lon1.cdn.digitaloceanspaces.com/profileImages/2026/January/27/e975cc59e9d3425fa878a1f7f6003526242c5e23dc934e2990aa5288164fc5db.jpg"
+  },
+  {
+    "userId": "6964d542283077c291d0b460",
+    "name": "Alvaro Morata",
+    "username": "alvaromorata",
+    "image": null
+  },
+  {
+    "userId": "6964d8e9283077c291d0b49d",
+    "name": "Austin",
+    "username": "austinr",
+    "image": "https://chatbucketcdn.lon1.cdn.digitaloceanspaces.com/profileImages/2026/January/26/180c873d1cac4e38b25d392f42ebd29bb19b9b1af6d5454cb2a6978f1a875940.jpg"
+  },
+  {
+    "userId": "6969e4e677b7293ea7543584",
+    "name": "arif razvi",
+    "username": "arif@1234",
+    "image": "https://example.com/images/profile.jpg"
+  },
+
+  {
+    "userId": "696e0a143b1a655d60dfd2a1",
+    "name": "updated name",
+    "username": "xyz",
+    "image": "https://chatbucketcdn.lon1.digitaloceanspaces.com/profileImages/2026/January/19/whatsappimage20260118at2340566084ef47b9384629a5b62f16acde5eef.jpeg"
+  },
+
+  {
+    "userId": "696f2e6da3ca9f623136815a",
+    "name": "Redmiv1",
+    "username": "Redmiv1",
+    "image": null
+  },
+  {
+    "userId": "696f5e13787995034d38e576",
+    "name": "Harry kane",
+    "username": "Hkane",
+    "image": "https://chatbucketcdn.lon1.digitaloceanspaces.com/profileImages/2026/January/22/d3e52bc9d38a4074a2cfca39cdd1ffc914a063c37d384ae1aa575b824bd4ee2b.jpg"
+  },
+  {
+    "userId": "697225c38bdedc9d2271c107",
+    "name": "Dummy2",
+    "username": "Dummy2",
+    "image": null
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "name": "dummy-participant-orchestrator",
+  "version": "1.0.0",
+  "description": "Lightweight LiveKit dummy participant orchestrator. Spawns synthetic participants that publish prerecorded MP4 media.",
+  "type": "module",
+  "main": "src/orchestrator.js",
+  "scripts": {
+    "start": "node src/orchestrator.js --room 71e33136-2d85-40d6-be90-73cd3a919ab6",
+    "dry": "node src/orchestrator.js --dry"
+  },
+  "dependencies": {
+    "@livekit/rtc-node": "^0.13.18",
+    "dotenv": "^17.4.2",
+    "ffmpeg-static": "^5.2.0",
+    "livekit-server-sdk": "^2.15.3"
+  }
+}
