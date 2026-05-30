@@ -1,0 +1,24 @@
+# docker-compose.yml
+# Windows / Docker Desktop compatible LiveKit setup
+
+services:
+  livekit:
+    image: livekit/livekit-server:v1.12
+    container_name: livekit
+
+    command: --config /etc/livekit.yaml --dev
+
+    restart: unless-stopped
+
+    ports:
+      # HTTP / WebSocket
+      - "7880:7880"
+
+      # ICE/TCP
+      - "7881:7881"
+
+      # WebRTC UDP range
+      - "50000-50100:50000-50100/udp"
+
+    volumes:
+      - ./livekit.yaml:/etc/livekit.yaml:ro

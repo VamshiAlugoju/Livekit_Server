@@ -9,13 +9,18 @@ if [[ ! -f .env ]]; then
   echo "ERROR: .env missing. Copy .env.example -> .env" >&2
   exit 1
 fi
-set -a; source .env; set +a
+set -a
+source .env
+set +a
 
 : "${REDIS_ADDR:?REDIS_ADDR not set in .env}"
 
 host="${REDIS_ADDR%%:*}"
-port="${REDIS_ADDR##*:}"
-[[ "$host" == "$port" ]] && port=6379   # no ':' in REDIS_ADDR -> default port
+if [[ "$REDIS_ADDR" == *:* ]]; then
+  port="${REDIS_ADDR##*:}"
+else
+  port=6379
+fi
 
 # --- check redis addr has host + port --------------------------------------
 if [[ -z "$host" || -z "$port" ]]; then
@@ -30,5 +35,5 @@ sed "s|__REDIS_ADDR__|${REDIS_ADDR}|g" livekit.yaml.tmpl > livekit.yaml
 echo "rendered livekit.yaml (redis -> ${REDIS_ADDR})"
 
 # --- up --------------------------------------------------------------------
-docker compose up -d
+docker compose -f docker-compose.windows.yml up --build -d
 echo "livekit up. logs: docker compose logs -f livekit"

@@ -40,5 +40,5 @@ Write-Host "redis addr ${host_}:${port} OK."
 Write-Host "rendered livekit.yaml (redis -> ${redisAddr})"
 
 # --- up --------------------------------------------------------------------
-docker compose up -d
+docker compose -f docker-compose.windows.yml up --build -d
 Write-Host "livekit up. logs: docker compose logs -f livekit"

@@ -1,4 +1,4 @@
-﻿# SOURCE config. up.sh renders this -> livekit.yaml, substituting localhost:6379
+﻿# SOURCE config. up.sh renders this -> livekit.yaml, substituting 10.10.10.155:6379
 # with REDIS_ADDR from .env. Edit THIS file, not livekit.yaml.
 port: 7880
 
@@ -17,9 +17,9 @@ keys:
 webhook:
   api_key: devkey
   urls:
-    - http://10.10.10.122:8081/v1/calls/webhook
+    - http://10.10.10.155:8088/v1/calls/webhook
 
 # external redis (from .env REDIS_ADDR). With network_mode: host, redis on the
 # same server is reachable at localhost:6379.
 redis:
-  address: localhost:6379
+  address: 10.10.10.155:6379
