@@ -1,0 +1,10 @@
+api_key: devkey
+api_secret: secret
+
+ws_url: ws://10.10.10.155:7880
+
+redis:
+  address: 10.10.10.155:6379
+
+logging:
+  level: info
