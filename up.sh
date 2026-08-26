@@ -14,6 +14,9 @@ source .env
 set +a
 
 : "${REDIS_ADDR:?REDIS_ADDR not set in .env}"
+REDIS_USERNAME="${REDIS_USERNAME:-}"
+REDIS_PASSWORD="${REDIS_PASSWORD:-}"
+REDIS_TLS_ENABLED="${REDIS_TLS_ENABLED:-false}"
 
 host="${REDIS_ADDR%%:*}"
 if [[ "$REDIS_ADDR" == *:* ]]; then
@@ -31,7 +34,11 @@ echo "redis addr ${host}:${port} OK."
 
 # --- render config from template -------------------------------------------
 # sed (cross-platform, no envsubst dependency). | delimiter to keep ':' safe.
-sed "s|__REDIS_ADDR__|${REDIS_ADDR}|g" livekit.yaml.tmpl > livekit.yaml
+sed -e "s|__REDIS_ADDR__|${REDIS_ADDR}|g" \
+    -e "s|__REDIS_USERNAME__|${REDIS_USERNAME}|g" \
+    -e "s|__REDIS_PASSWORD__|${REDIS_PASSWORD}|g" \
+    -e "s|__REDIS_TLS_ENABLED__|${REDIS_TLS_ENABLED}|g" \
+    livekit.yaml.tmpl > livekit.yaml
 echo "rendered livekit.yaml (redis -> ${REDIS_ADDR})"
 
 # --- up --------------------------------------------------------------------

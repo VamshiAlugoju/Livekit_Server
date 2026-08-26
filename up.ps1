@@ -34,8 +34,15 @@ if (-not $host_ -or -not $port) {
 Write-Host "redis addr ${host_}:${port} OK."
 
 # --- render config from template -------------------------------------------
-# replace __REDIS_ADDR__ with REDIS_ADDR from .env.
-(Get-Content livekit.yaml.tmpl -Raw).Replace('__REDIS_ADDR__', $redisAddr) |
+# replace __REDIS_*__ placeholders with values from .env.
+$redisUser = if ($env:REDIS_USERNAME) { $env:REDIS_USERNAME } else { '' }
+$redisPass = if ($env:REDIS_PASSWORD) { $env:REDIS_PASSWORD } else { '' }
+$redisTls  = if ($env:REDIS_TLS_ENABLED) { $env:REDIS_TLS_ENABLED } else { 'false' }
+(Get-Content livekit.yaml.tmpl -Raw).
+    Replace('__REDIS_ADDR__', $redisAddr).
+    Replace('__REDIS_USERNAME__', $redisUser).
+    Replace('__REDIS_PASSWORD__', $redisPass).
+    Replace('__REDIS_TLS_ENABLED__', $redisTls) |
     Set-Content livekit.yaml -Encoding utf8 -NoNewline
 Write-Host "rendered livekit.yaml (redis -> ${redisAddr})"
 

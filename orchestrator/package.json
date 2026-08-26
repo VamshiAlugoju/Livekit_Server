@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/orchestrator.js",
   "scripts": {
-    "start": "node src/orchestrator.js --room 71e33136-2d85-40d6-be90-73cd3a919ab6",
+    "start": "node init && node src/orchestrator.js --room 71e33136-2d85-40d6-be90-73cd3a919ab6",
     "dry": "node src/orchestrator.js --dry"
   },
   "dependencies": {

@@ -22,8 +22,8 @@ webhook:
 # external redis (from .env REDIS_ADDR). With network_mode: host, redis on the
 # same server is reachable at localhost:6379.
 redis:
-  address: cb-redis-prod-do-user-35788896-0.a.db.ondigitalocean.com:25061
-  username: default
-  password: AVNS_1BisAXFeHXc3X5TrZvb
+  address: __REDIS_ADDR__
+  username: __REDIS_USERNAME__
+  password: __REDIS_PASSWORD__
   tls:
-    enabled: true
+    enabled: __REDIS_TLS_ENABLED__
