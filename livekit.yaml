@@ -1,11 +1,11 @@
-﻿# SOURCE config. up.sh renders this -> livekit.yaml, substituting 10.10.10.155:6379
+﻿# SOURCE config. up.sh renders this -> livekit.yaml, substituting 134.209.176.9:6379
 # with REDIS_ADDR from .env. Edit THIS file, not livekit.yaml.
 port: 7880
 
 rtc:
   tcp_port: 7881
   port_range_start: 50000
-  port_range_end: 50100
+  port_range_end: 50999
 
 keys:
   devkey: secret
@@ -17,9 +17,13 @@ keys:
 webhook:
   api_key: devkey
   urls:
-    - http://10.10.10.155:8088/v1/calls/webhook
+    - https://api.chatbucket.chat/v1/calls/webhook
 
 # external redis (from .env REDIS_ADDR). With network_mode: host, redis on the
 # same server is reachable at localhost:6379.
 redis:
-  address: 10.10.10.155:6379
+  address: cb-redis-prod-do-user-35788896-0.a.db.ondigitalocean.com:25061
+  username: default
+  password: AVNS_1BisAXFeHXc3X5TrZvb
+  tls:
+    enabled: true

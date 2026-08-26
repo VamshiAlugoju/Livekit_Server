@@ -4,10 +4,6 @@ port: 7880
 
 rtc:
   tcp_port: 7881
-  # Must match the UDP range published by docker-compose.windows.yml (bridge/dev).
-  # Under docker-compose.yml (host networking, Linux/prod) the whole range binds
-  # directly on the host, so keep them identical to avoid LiveKit picking a media
-  # port that isn't reachable (-> "could not establish pc connection").
   port_range_start: 50000
   port_range_end: 50999
 
@@ -26,4 +22,8 @@ webhook:
 # external redis (from .env REDIS_ADDR). With network_mode: host, redis on the
 # same server is reachable at localhost:6379.
 redis:
-  address: __REDIS_ADDR__
+  address: cb-redis-prod-do-user-35788896-0.a.db.ondigitalocean.com:25061
+  username: default
+  password: AVNS_1BisAXFeHXc3X5TrZvb
+  tls:
+    enabled: true
