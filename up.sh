@@ -35,5 +35,10 @@ sed "s|__REDIS_ADDR__|${REDIS_ADDR}|g" livekit.yaml.tmpl > livekit.yaml
 echo "rendered livekit.yaml (redis -> ${REDIS_ADDR})"
 
 # --- up --------------------------------------------------------------------
-docker compose -f docker-compose.windows.yml up --build -d
+# Linux server: host networking (docker-compose.yml). Binds the full UDP range
+# from livekit.yaml directly on the host with NO NAT/port-mapping — required so
+# every WebRTC media port LiveKit picks is reachable. The Windows compose
+# (bridge + published ports) is only for local Docker Desktop, which has no host
+# networking; use up.ps1 there.
+docker compose -f docker-compose.yml up --build -d
 echo "livekit up. logs: docker compose logs -f livekit"

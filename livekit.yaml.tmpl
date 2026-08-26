@@ -4,8 +4,12 @@ port: 7880
 
 rtc:
   tcp_port: 7881
+  # Must match the UDP range published by docker-compose.windows.yml (bridge/dev).
+  # Under docker-compose.yml (host networking, Linux/prod) the whole range binds
+  # directly on the host, so keep them identical to avoid LiveKit picking a media
+  # port that isn't reachable (-> "could not establish pc connection").
   port_range_start: 50000
-  port_range_end: 50100
+  port_range_end: 50999
 
 keys:
   devkey: secret
@@ -17,7 +21,7 @@ keys:
 webhook:
   api_key: devkey
   urls:
-    - http://10.10.10.155:8081/v1/calls/webhook
+    - https://api.chatbucket.chat/v1/calls/webhook
 
 # external redis (from .env REDIS_ADDR). With network_mode: host, redis on the
 # same server is reachable at localhost:6379.
